@@ -28,30 +28,59 @@ public class TextUI {
             if (willEnd(input)) {
                 break;
             }
-            addOrSearch(input);
+            determineInput(input);
         }
     }
 
-    public boolean addOrSearch(String word) {
+//    public boolean addOrSearch(String word) {
+//        if (word.equals("add")) {
+//            System.out.println("Word: ");
+//            String wordInput = scanner.nextLine();
+//            System.out.println("Translation: ");
+//            String translation = scanner.nextLine();
+//            this.dict.add(wordInput, translation);
+//        } else if (word.equals("search")) {
+//            System.out.println("To be translated: ");
+//            String translated = scanner.nextLine();
+//            if (this.dict.translate(translated) == null) {
+//                System.out.println("Word " + translated + " was not found");
+//            } else {
+//                System.out.println("Translation: ");
+//                System.out.println(this.dict.translate(translated));
+//            }
+//        } else {
+//            System.out.println("Unknown command");
+//        }
+//        return false;
+//    }
+    
+    public void determineInput(String word) {
         if (word.equals("add")) {
-            System.out.println("Word: ");
-            String wordInput = scanner.nextLine();
-            System.out.println("Translation: ");
-            String translation = scanner.nextLine();
-            this.dict.add(wordInput, translation);
+            add();
         } else if (word.equals("search")) {
-            System.out.println("To be translated: ");
-            String translated = scanner.nextLine();
-            if (this.dict.translate(translated) == null) {
-                System.out.println("Word " + translated + " was not found");
-            } else {
-                System.out.println("Translation: ");
-                System.out.println(this.dict.translate(translated));
-            }
+            search();
         } else {
-            System.out.println("Unknown command");
+            System.out.println("Unkonwn command");
         }
-        return false;
+    }
+
+    public void add() {
+        System.out.println("Word: ");
+        String wordInput = scanner.nextLine();
+        System.out.println("Translation: ");
+        String translation = scanner.nextLine();
+        this.dict.add(wordInput, translation);
+    }
+
+    public void search() {
+        System.out.println("To be translated: ");
+        String translated = scanner.nextLine();
+        if (this.dict.translate(translated) == null) {
+            System.out.println("Word " + translated + " was not found");
+        } else {
+            System.out.println("Translation: ");
+            System.out.println(this.dict.translate(translated));
+        }
     }
 
     public boolean willEnd(String word) {
