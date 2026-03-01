@@ -31,28 +31,6 @@ public class TextUI {
             determineInput(input);
         }
     }
-
-//    public boolean addOrSearch(String word) {
-//        if (word.equals("add")) {
-//            System.out.println("Word: ");
-//            String wordInput = scanner.nextLine();
-//            System.out.println("Translation: ");
-//            String translation = scanner.nextLine();
-//            this.dict.add(wordInput, translation);
-//        } else if (word.equals("search")) {
-//            System.out.println("To be translated: ");
-//            String translated = scanner.nextLine();
-//            if (this.dict.translate(translated) == null) {
-//                System.out.println("Word " + translated + " was not found");
-//            } else {
-//                System.out.println("Translation: ");
-//                System.out.println(this.dict.translate(translated));
-//            }
-//        } else {
-//            System.out.println("Unknown command");
-//        }
-//        return false;
-//    }
     
     public void determineInput(String word) {
         if (word.equals("add")) {
