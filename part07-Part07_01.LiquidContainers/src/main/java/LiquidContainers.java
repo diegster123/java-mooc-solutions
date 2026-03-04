@@ -7,11 +7,11 @@ public class LiquidContainers {
         Scanner scan = new Scanner(System.in);
         int firstSum = 0;
         int secondSum = 0;
-        int upperBound = 100;
+        int threshold = 100;
 
         while (true) {
-            System.out.println("First: " + firstSum + "/" + upperBound);
-            System.out.println("Second: " + secondSum + "/" + upperBound);
+            System.out.println("First: " + firstSum + "/" + threshold);
+            System.out.println("Second: " + secondSum + "/" + threshold);
 
             String input = scan.nextLine();
 
@@ -24,36 +24,29 @@ public class LiquidContainers {
             int amount = Integer.valueOf(parts[1]);
 
             if (command.equals("add") && amount > 0) {
-                if (firstSum + amount > upperBound) {
-                    firstSum = upperBound;
-                } else {
-                    firstSum += amount;
+                firstSum += amount;
+                if (firstSum > threshold) {
+                    firstSum = threshold;
                 }
             }
 
             if (command.equals("move") && amount > 0) {
-                if (firstSum - amount < 0) {
-                    int temp = firstSum;
-                    firstSum = 0;
-                    secondSum = temp;
-                } else {
-                    firstSum -= amount;
-                    if (secondSum + amount > upperBound) {
-                        secondSum = upperBound;
-                    } else {
-                        secondSum += amount;
-                    }
+                if (amount > firstSum) {
+                    amount = firstSum;
+                }
+                firstSum -= amount;
+                secondSum += amount;
+                if (secondSum > threshold) {
+                    secondSum = threshold;
                 }
             }
-            
+
             if (command.equals("remove") && amount > 0) {
-                if (secondSum - amount < 0) {
+                secondSum -= amount;
+                if (secondSum < 0) {
                     secondSum = 0;
-                } else {
-                    secondSum -= amount;
                 }
             }
         }
     }
-
 }
